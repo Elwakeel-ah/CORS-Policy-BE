@@ -13,23 +13,23 @@ This project showcases different CORS policies and their effects on cross-origin
 
 ## CORS Policies
 
-| Policy | Description |
-|--------|-------------|
-| `AllowPostMethod` | Allows POST requests from `http://127.0.0.1:5500` |
+| Policy             | Description                                          |
+| ------------------ | ---------------------------------------------------- |
+| `AllowPostMethod`  | Allows POST requests from `http://127.0.0.1:5500`    |
 | `AllowCredentials` | Allows POST with credentials (cookies, auth headers) |
-| `PreflightCache` | Caches preflight responses for 10 minutes |
+| `PreflightCache`   | Caches preflight responses for 10 minutes            |
 
 ## API Endpoints
 
-| Method | Endpoint | CORS Policy | Description |
-|--------|----------|-------------|-------------|
-| GET | `/simple-get` | None | Simple GET request |
-| POST | `/preflighted-post-no-cors` | None | POST without CORS (will fail cross-origin) |
-| POST | `/preflighted-post-with-cors` | AllowPostMethod | POST with CORS enabled |
-| POST | `/credentialed-post-with-no-cors` | None | Credentialed POST without CORS |
-| POST | `/credentialed-post-with-cors` | AllowCredentials | Credentialed POST with CORS |
-| POST | `/submit-form` | None | Form submission (no preflight needed) |
-| POST | `/preflighted-cached` | PreflightCache | POST with preflight caching |
+| Method | Endpoint                          | CORS Policy      | Description                                |
+| ------ | --------------------------------- | ---------------- | ------------------------------------------ |
+| GET    | `/simple-get`                     | None             | Simple GET request                         |
+| POST   | `/preflighted-post-no-cors`       | None             | POST without CORS (will fail cross-origin) |
+| POST   | `/preflighted-post-with-cors`     | AllowPostMethod  | POST with CORS enabled                     |
+| POST   | `/credentialed-post-with-no-cors` | None             | Credentialed POST without CORS             |
+| POST   | `/credentialed-post-with-cors`    | AllowCredentials | Credentialed POST with CORS                |
+| POST   | `/submit-form`                    | None             | Form submission (no preflight needed)      |
+| POST   | `/preflighted-cached`             | PreflightCache   | POST with preflight caching                |
 
 ## Prerequisites
 
@@ -48,31 +48,3 @@ This project showcases different CORS policies and their effects on cross-origin
    ```
 
 The API will be available at the URLs specified in `launchSettings.json`.
-
-## Testing CORS
-
-To test CORS behavior, serve a simple HTML page from `http://127.0.0.1:5500` (e.g., using VS Code Live Server) and make fetch requests to the API endpoints.
-
-Example fetch request:
-```javascript
-fetch('http://localhost:5000/preflighted-post-with-cors', {
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/json'
-  },
-  body: JSON.stringify({ id: 1, name: 'Test User' })
-});
-```
-
-## Request/Response Model
-
-```json
-{
-  "id": 1,
-  "name": "string"
-}
-```
-
-## License
-
-MIT
